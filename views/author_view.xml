@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="blog_author_form" model="ir.ui.view">
+        <field name="name">blog.author.form</field>
+        <field name="model">blog.author</field>
+        <field name="arch" type="xml">
+            <form string="Author">
+                <sheet>
+                    <group>
+                        <field name="sequence"/>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="about_me"/>
+                        <field name="photo"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="blog_author_tree" model="ir.ui.view">
+        <field name="name">blog.author.tree</field>
+        <field name="model">blog.author</field>
+        <field name="arch" type="xml">
+            <tree name="Author">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="about_me"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="blog_author_action" model="ir.actions.act_window">
+        <field name="name">Author</field>
+        <field name="res_model">blog.author</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="blog_author_menu"
+              name="Author"
+              parent="blog_menu"
+              action="blog_author_action"
+              sequence="40"/>
+
+</odoo>

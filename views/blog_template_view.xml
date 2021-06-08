@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="blog_template_form" model="ir.ui.view">
+        <field name="name">blog.template.form</field>
+        <field name="model">blog.template</field>
+        <field name="arch" type="xml">
+            <form string="Blog Template">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="url"/>
+                        <field name="template"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="blog_template_tree" model="ir.ui.view">
+        <field name="name">blog.template.tree</field>
+        <field name="model">blog.template</field>
+        <field name="arch" type="xml">
+            <tree name="Blog Template">
+                <field name="name"/>
+                <field name="url"/>
+                <field name="template"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="blog_template_action" model="ir.actions.act_window">
+        <field name="name">Blog Template</field>
+        <field name="res_model">blog.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="blog_template_menu"
+              name="Blog Template"
+              parent="blog_menu"
+              action="blog_template_action"
+              sequence="30"/>
+
+</odoo>

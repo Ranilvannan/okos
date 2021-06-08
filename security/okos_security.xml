@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record model="ir.module.category" id="okos_category">
+            <field name="name">Okos</field>
+            <field name="description">Okos</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="okos_admin" model="res.groups">
+            <field name="name">Okos Admin</field>
+            <field name="category_id" ref="okos_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="blog_blog_form" model="ir.ui.view">
+        <field name="name">blog.blog.form</field>
+        <field name="model">blog.blog</field>
+        <field name="arch" type="xml">
+            <form string="Blog">
+                <sheet>
+                    <h1><field name="sequence"/></h1>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="url"/>
+                        <field name="author_id"/>
+                        <field name="category_id"/>
+                        <field name="variety_id"/>
+                        <field name="preview"/>
+                        <field name="is_completed"/>
+                        <field name="is_exported"/>
+                        <field name="date_of_publish"/>
+                    </group>
+                    <notebook>
+                        <page string="Content">
+                            <field name="content"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="blog_blog_tree" model="ir.ui.view">
+        <field name="name">blog.blog.tree</field>
+        <field name="model">blog.blog</field>
+        <field name="arch" type="xml">
+            <tree name="Blog">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="url"/>
+                <field name="author_id"/>
+                <field name="category_id"/>
+                <field name="variety_id"/>
+                <field name="is_completed"/>
+                <field name="is_exported"/>
+                <field name="date_of_publish"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="blog_blog_action" model="ir.actions.act_window">
+        <field name="name">Blog</field>
+        <field name="res_model">blog.blog</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="blog_blog_menu"
+              name="Blog"
+              parent="blog_menu"
+              action="blog_blog_action"
+              sequence="10"/>
+
+</odoo>
