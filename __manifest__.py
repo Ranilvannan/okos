@@ -20,7 +20,8 @@
         'views/variety_view.xml',
         'views/blog_view.xml',
         'views/blog_template_view.xml',
-        'views/operating_system_view.xml'
+        'views/operating_system_view.xml',
+        'views/gallery_view.xml'
     ],
     'demo': [],
     'qweb': [],

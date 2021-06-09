@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class BlogTemplate(models.Model):
@@ -9,3 +9,8 @@ class BlogTemplate(models.Model):
     name = fields.Char(string="Name")
     url = fields.Char(string="URL")
     template = fields.Text(string="Template")
+
+    @api.model
+    def create(self, vals):
+        vals["sequence"] = self.env['ir.sequence'].next_by_code("blog.template")
+        return super(BlogTemplate, self).create(vals)

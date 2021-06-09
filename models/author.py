@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class Author(models.Model):
@@ -10,3 +10,10 @@ class Author(models.Model):
     email = fields.Char(string="Email", required=True)
     about_me = fields.Text(string="About Me", required=True)
     photo = fields.Binary(string="Photo")
+    url = fields.Char(string="URL")
+
+    @api.model
+    def create(self, vals):
+        vals["sequence"] = self.env['ir.sequence'].next_by_code("blog.author")
+        return super(Author, self).create(vals)
+

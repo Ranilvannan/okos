@@ -11,6 +11,13 @@ class Export(models.TransientModel):
     _name = "blog.export"
     _description = "Blog Export"
 
+    def reset_blog(self):
+        variety = config["technical_blog_export_variety"]
+        recs = self.env["blog.blog"].search([("variety_id.name", "=", variety)])
+
+        for rec in recs:
+            rec.is_exported = False
+
     def trigger_technical_blog_export(self):
         variety = config["technical_blog_export_variety"]
 
@@ -33,7 +40,9 @@ class Export(models.TransientModel):
 
         for rec in recs:
             blog = {
-                "date": "Date",
+                "blog_id": rec.id,
+                "date_us_format": rec.date.strftime("%Y-%m-%d"),
+                "date_read_format": rec.date.strftime("%d-%m-%Y"),
                 "sequence": rec.sequence,
                 "name": rec.name,
                 "url": rec.url,
@@ -42,7 +51,10 @@ class Export(models.TransientModel):
                 "content": rec.content,
                 "author_name": rec.author_id.name,
                 "author_email": rec.author_id.email,
-                "author_description": rec.author_id.about_me
+                "author_description": rec.author_id.about_me,
+                "category_name": rec.category_id.name,
+                "category_url": rec.category_id.url,
+                "variety": rec.variety_id.name
             }
 
             articles.append(blog)
