@@ -14,6 +14,7 @@
                         <field name="author_id"/>
                         <field name="category_id"/>
                         <field name="variety_id"/>
+                        <field name="gallery_id"/>
                         <field name="preview"/>
                         <field name="is_completed"/>
                         <field name="is_exported"/>

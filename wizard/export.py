@@ -21,9 +21,9 @@ class Export(models.TransientModel):
     def trigger_technical_blog_export(self):
         variety = config["technical_blog_export_variety"]
 
-        recs = self.env["blog.blog"].search([("variety_id.name", "=", variety),
+        recs = self.env["blog.blog"].search([("variety_id.code", "=", variety),
                                              ("is_completed", "=", True),
-                                             ("is_exported", "=", False)])[:10]
+                                             ("is_exported", "=", False)])[:3]
 
         if recs:
             data = self.generate_json(recs)
@@ -42,11 +42,12 @@ class Export(models.TransientModel):
             blog = {
                 "blog_id": rec.id,
                 "date_us_format": rec.date.strftime("%Y-%m-%d"),
-                "date_read_format": rec.date.strftime("%d-%m-%Y"),
+                "date_read_format": rec.date.strftime("%d %b %Y"),
                 "sequence": rec.sequence,
                 "name": rec.name,
                 "url": rec.url,
-                "image": rec.image,
+                "image_file": rec.gallery_id.file_name,
+                "image_file_path": rec.gallery_id.file_path,
                 "preview": rec.preview,
                 "content": rec.content,
                 "author_name": rec.author_id.name,
@@ -54,7 +55,10 @@ class Export(models.TransientModel):
                 "author_description": rec.author_id.about_me,
                 "category_name": rec.category_id.name,
                 "category_url": rec.category_id.url,
-                "variety": rec.variety_id.name
+                "variety": rec.variety_id.name,
+                "blog_code": rec.variety_id.code,
+                "comments_count": 0,
+                "views_count": 0
             }
 
             articles.append(blog)
@@ -66,7 +70,6 @@ class Export(models.TransientModel):
         tmp_file = tempfile.NamedTemporaryFile(prefix=prefix, suffix=".json", delete=False, mode="w+")
         json.dump(json_data, tmp_file)
         tmp_file.flush()
-        print(tmp_file)
 
         return tmp_file
 
