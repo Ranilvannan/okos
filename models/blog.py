@@ -13,6 +13,7 @@ class Blog(models.Model):
     preview = fields.Text(string="Preview")
     content = fields.Text(string="Content")
     gallery_id = fields.Many2one(comodel_name="blog.gallery", string="Gallery")
+    item_ids = fields.One2many(comodel_name="blog.items", inverse_name="blog_id")
     author_id = fields.Many2one(comodel_name="blog.author", string="Author")
     category_id = fields.Many2one(comodel_name="blog.category", string="Category")
     variety_id = fields.Many2one(comodel_name="blog.variety", string="Variety")
@@ -26,3 +27,11 @@ class Blog(models.Model):
     def create(self, vals):
         vals["sequence"] = self.env['ir.sequence'].next_by_code("blog.blog")
         return super(Blog, self).create(vals)
+
+
+class BlogItems(models.Model):
+    _name = "blog.items"
+    _description = "Blog Items"
+
+    gallery_id = fields.Many2one(comodel_name="blog.gallery", string="Gallery")
+    blog_id = fields.Many2one(comodel_name="blog.blog", string="Blog")

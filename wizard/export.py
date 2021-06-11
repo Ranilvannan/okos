@@ -48,6 +48,8 @@ class Export(models.TransientModel):
                 "url": rec.url,
                 "image_file": rec.gallery_id.file_name,
                 "image_file_path": rec.gallery_id.file_path,
+                "items": [{"image_file": item.gallery_id.file_name,
+                           "image_file_path": rec.gallery_id.file_path} for item in rec.items],
                 "preview": rec.preview,
                 "content": rec.content,
                 "author_name": rec.author_id.name,

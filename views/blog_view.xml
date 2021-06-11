@@ -24,6 +24,13 @@
                         <page string="Content">
                             <field name="content"/>
                         </page>
+                        <page string="Gallery Items">
+                            <field name="item_ids">
+                                <tree editable="bottom">
+                                    <field name="gallery_id"/>
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
