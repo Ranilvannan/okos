@@ -43,6 +43,7 @@ class Export(models.TransientModel):
                 "blog_id": rec.id,
                 "date_us_format": rec.date.strftime("%Y-%m-%d"),
                 "date_read_format": rec.date.strftime("%d %b %Y"),
+                "date_lastmod": rec.date.strftime("%Y-%m-%dT%H:%M:%SZ"),
                 "sequence": rec.sequence,
                 "name": rec.name,
                 "url": rec.url,

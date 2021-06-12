@@ -5,6 +5,7 @@ blog_variety_admin,blog.variety.admin,model_blog_variety,okos_admin,1,1,1,1
 blog_blog_admin,blog.blog.admin,model_blog_blog,okos_admin,1,1,1,1
 blog_template_admin,blog.template.admin,model_blog_template,okos_admin,1,1,1,1
 operating_system_admin,operating.system.admin,model_operating_system,okos_admin,1,1,1,1
+ops_list_admin,ops.list.admin,model_ops_list,okos_admin,1,1,1,1
 blog_export_admin,blog.export.admin,model_blog_export,okos_admin,1,1,1,1
 blog_gallery_admin,blog.gallery.admin,model_blog_gallery,okos_admin,1,1,1,1
 blog_items_admin,blog.items.admin,model_blog_items,okos_admin,1,1,1,1
