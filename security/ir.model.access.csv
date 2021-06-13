@@ -6,6 +6,7 @@ blog_blog_admin,blog.blog.admin,model_blog_blog,okos_admin,1,1,1,1
 blog_template_admin,blog.template.admin,model_blog_template,okos_admin,1,1,1,1
 top_tools_admin,top.tools.admin,model_top_tools,okos_admin,1,1,1,1
 blog_tools_admin,blog.tools.admin,model_blog_tools,okos_admin,1,1,1,1
+blog_related_admin,blog.related.admin,model_blog_related,okos_admin,1,1,1,1
 blog_tools_item_admin,blog.tools.item.admin,model_blog_tools_item,okos_admin,1,1,1,1
 blog_export_admin,blog.export.admin,model_blog_export,okos_admin,1,1,1,1
 blog_gallery_admin,blog.gallery.admin,model_blog_gallery,okos_admin,1,1,1,1

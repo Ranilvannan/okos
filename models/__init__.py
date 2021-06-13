@@ -1,5 +1,6 @@
 from . import author
 from . import category
+from . import related
 from . import variety
 from . import blog
 from . import blog_template

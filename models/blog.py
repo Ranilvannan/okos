@@ -22,6 +22,11 @@ class Blog(models.Model):
     is_completed = fields.Boolean(string="Is Completed")
     date_of_publish = fields.Datetime(string="Date of Publish")
     is_exported = fields.Boolean(string="Is Exported")
+    ref = fields.Char(string="Reference")
+
+    _sql_constraints = [
+        ('related_blog_uniq', 'unique (ref)', "Reference is not unique !.."),
+    ]
 
     @api.model
     def create(self, vals):

@@ -6,7 +6,7 @@ class TopTools(models.Model):
     _name = "top.tools"
     _description = "Top Tools"
 
-    sequence = fields.Char(string="Name", readonly=True)
+    sequence = fields.Char(string="Sequence", readonly=True)
     name = fields.Char(string="Name")
     content = fields.Text(string="Content")
     tools_ids = fields.Many2many(comodel_name="blog.tools")

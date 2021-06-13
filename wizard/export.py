@@ -39,6 +39,24 @@ class Export(models.TransientModel):
         articles = []
 
         for rec in recs:
+            previous_blog_name = False
+            previous_blog_url = False
+            previous_articles = self.env["blog.blog"].search([("id", "<", rec.id)])
+            if previous_articles:
+                previous_blog = previous_articles[-1]
+                previous_blog_name = previous_blog.name
+                previous_blog_url = previous_blog.url
+
+            next_blog_name = False
+            next_blog_url = False
+            next_articles = self.env["blog.blog"].search([("id", ">", rec.id)])
+            if next_articles:
+                next_blog = next_articles[0]
+                next_blog_name = next_blog.name
+                next_blog_url = next_blog.url
+
+            related_articles = self.env["blog.related"].search([("blog_id", "=", rec.id)])
+
             blog = {
                 "blog_id": rec.id,
                 "date_us_format": rec.date.strftime("%Y-%m-%d"),
@@ -50,18 +68,28 @@ class Export(models.TransientModel):
                 "image_file": rec.gallery_id.file_name,
                 "image_file_path": rec.gallery_id.file_path,
                 "items": [{"image_file": item.gallery_id.file_name,
-                           "image_file_path": rec.gallery_id.file_path} for item in rec.items],
+                           "image_file_path": item.gallery_id.file_path} for item in rec.items],
                 "preview": rec.preview,
                 "content": rec.content,
                 "author_name": rec.author_id.name,
                 "author_email": rec.author_id.email,
                 "author_description": rec.author_id.about_me,
+                "author_photo_image_file": rec.author_id.gallery_id.file_name,
+                "author_photo_image_file_path": rec.author_id.gallery_id.file_path,
                 "category_name": rec.category_id.name,
                 "category_url": rec.category_id.url,
                 "variety": rec.variety_id.name,
                 "blog_code": rec.variety_id.code,
                 "comments_count": 0,
-                "views_count": 0
+                "views_count": 0,
+                "previous_blog_name": previous_blog_name,
+                "previous_blog_url": previous_blog_url,
+                "next_blog_name": next_blog_name,
+                "next_blog_url": next_blog_url,
+                "related_blogs": [{"image_file": item.gallery_id.file_name,
+                                   "image_file_path": item.gallery_id.file_path,
+                                   "name": item.name,
+                                   "url": item.url} for item in related_articles.related_ids]
             }
 
             articles.append(blog)

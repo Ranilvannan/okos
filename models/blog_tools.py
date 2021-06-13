@@ -5,7 +5,7 @@ class BlogTools(models.Model):
     _name = "blog.tools"
     _description = "Blog Tools"
 
-    sequence = fields.Char(string="Name", readonly=True)
+    sequence = fields.Char(string="Sequence", readonly=True)
     name = fields.Char(string="Name")
     content = fields.Text(string="Content")
     feature_ids = fields.One2many(comodel_name="blog.tools.item", inverse_name="tool_id")

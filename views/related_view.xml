@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="blog_related_form" model="ir.ui.view">
+        <field name="name">blog.related.form</field>
+        <field name="model">blog.related</field>
+        <field name="arch" type="xml">
+            <form string="Related">
+                <sheet>
+                    <group>
+                        <field name="blog_id"/>
+                        <field name="related_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="blog_related_tree" model="ir.ui.view">
+        <field name="name">blog.related.tree</field>
+        <field name="model">blog.related</field>
+        <field name="arch" type="xml">
+            <tree name="Related">
+                <field name="blog_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="blog_related_action" model="ir.actions.act_window">
+        <field name="name">Related</field>
+        <field name="res_model">blog.related</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="blog_related_menu"
+              name="Related"
+              parent="blog_menu"
+              action="blog_related_action"
+              sequence="80"/>
+
+</odoo>

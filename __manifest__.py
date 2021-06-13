@@ -23,7 +23,8 @@
         'views/blog_template_view.xml',
         'views/top_tools_view.xml',
         'views/blog_tools_view.xml',
-        'views/gallery_view.xml'
+        'views/gallery_view.xml',
+        'views/related_view.xml'
     ],
     'demo': [],
     'qweb': [],
