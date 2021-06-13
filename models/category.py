@@ -6,6 +6,6 @@ class Category(models.Model):
     _name = "blog.category"
     _description = "Category"
 
-    name = fields.Char(string="Name", required=True)
-    code = fields.Char(string="Code", required=True)
-    url = fields.Char(string="URL", required=True)
+    name = fields.Char(string="Name")
+    code = fields.Char(string="Code")
+    url = fields.Char(string="URL")

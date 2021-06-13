@@ -12,6 +12,7 @@
     'depends': ['base', 'web', 'mail'],
     'data': [
         'data/sequence.xml',
+        'data/variety.xml',
         'security/okos_security.xml',
         'security/ir.model.access.csv',
         'views/menu_view.xml',
@@ -20,9 +21,9 @@
         'views/variety_view.xml',
         'views/blog_view.xml',
         'views/blog_template_view.xml',
-        'views/operating_system_view.xml',
-        'views/gallery_view.xml',
-        'views/operating_system_list_view.xml'
+        'views/top_tools_view.xml',
+        'views/blog_tools_view.xml',
+        'views/gallery_view.xml'
     ],
     'demo': [],
     'qweb': [],

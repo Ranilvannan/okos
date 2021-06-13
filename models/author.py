@@ -6,10 +6,10 @@ class Author(models.Model):
     _description = "Author Info"
 
     sequence = fields.Char(string="Sequence", readonly=True)
-    name = fields.Char(string="Name", required=True)
-    email = fields.Char(string="Email", required=True)
-    about_me = fields.Text(string="About Me", required=True)
-    photo = fields.Binary(string="Photo")
+    name = fields.Char(string="Name")
+    email = fields.Char(string="Email")
+    about_me = fields.Text(string="About Me")
+    gallery_id = fields.Many2one(comodel_name="blog.gallery", string="Gallery")
     url = fields.Char(string="URL")
 
     @api.model

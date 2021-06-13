@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="blog_tools_form" model="ir.ui.view">
+        <field name="name">blog.tools.form</field>
+        <field name="model">blog.tools</field>
+        <field name="arch" type="xml">
+            <form string="Tools">
+                <sheet>
+                    <h1><field name="sequence"/></h1>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="content"/>
+                        <field name="website"/>
+                    </group>
+                    <notebook>
+                        <page string="Feature">
+                            <field name="feature_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="blog_tools_tree" model="ir.ui.view">
+        <field name="name">blog.tools.tree</field>
+        <field name="model">blog.tools</field>
+        <field name="arch" type="xml">
+            <tree name="Tools">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="website"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="blog_tools_action" model="ir.actions.act_window">
+        <field name="name">Tools</field>
+        <field name="res_model">blog.tools</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="blog_tools_menu"
+              name="Tools"
+              parent="blog_menu"
+              action="blog_tools_action"
+              sequence="40"/>
+
+</odoo>

@@ -11,8 +11,26 @@
             <field eval="False" name="company_id"/>
         </record>
 
+        <record id="top_tools_sequence" model="ir.sequence">
+            <field name="name">Top Tools</field>
+            <field name="code">top.tools</field>
+            <field name="prefix">Top/Tools/%(year)s/%(month)s/</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+
+        <record id="blog_tools_sequence" model="ir.sequence">
+            <field name="name">Blog Tools</field>
+            <field name="code">blog.tools</field>
+            <field name="prefix">Tools/%(year)s/%(month)s/</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+        </record>
+
         <record id="blog_author_sequence" model="ir.sequence">
-            <field name="name">Blog</field>
+            <field name="name">Blog Author</field>
             <field name="code">blog.blog</field>
             <field name="prefix">Author/%(year)s/%(month)s/</field>
             <field eval="1" name="number_next"/>

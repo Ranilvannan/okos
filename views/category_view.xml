@@ -38,6 +38,6 @@
               name="Category"
               parent="blog_menu"
               action="blog_category_action"
-              sequence="50"/>
+              sequence="60"/>
 
 </odoo>

@@ -8,8 +8,8 @@ class Blog(models.Model):
 
     date = fields.Date(string="Date", default=datetime.now())
     sequence = fields.Char(string="Sequence", readonly=True)
-    name = fields.Char(string="Name", required=True)
-    url = fields.Char(string="URL", required=True)
+    name = fields.Char(string="Name")
+    url = fields.Char(string="URL")
     preview = fields.Text(string="Preview")
     content = fields.Text(string="Content")
     gallery_id = fields.Many2one(comodel_name="blog.gallery", string="Gallery")

@@ -39,6 +39,6 @@
               name="Blog Template"
               parent="blog_menu"
               action="blog_template_action"
-              sequence="30"/>
+              sequence="50"/>
 
 </odoo>
