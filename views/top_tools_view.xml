@@ -12,15 +12,11 @@
                         <field name="name"/>
                         <field name="template_id"/>
                     </group>
-                    <button name="trigger_generate_blog" string="Generate Blog" type="object"/>
-                    <notebook>
-                        <page string="CONTENT">
-                            <field name="content"/>
-                        </page>
-                        <page string="Tools Item">
-                            <field name="tools_ids" widget="many2many_tags"/>
-                        </page>
-                    </notebook>
+                    <group>
+                        <field name="tools_ids" widget="many2many_tags" placeholder="Tools...."/>
+                    </group>
+                    <field name="content" placeholder="Content..."/>
+                    <button name="trigger_generate_blog" class="btn btn-primary" string="Generate Blog" type="object"/>
                 </sheet>
             </form>
         </field>

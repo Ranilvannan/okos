@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class BlogTools(models.Model):
@@ -10,6 +10,11 @@ class BlogTools(models.Model):
     content = fields.Text(string="Content")
     feature_ids = fields.One2many(comodel_name="blog.tools.item", inverse_name="tool_id")
     website = fields.Char(string="Website")
+
+    @api.model
+    def create(self, vals):
+        vals["sequence"] = self.env['ir.sequence'].next_by_code("blog.tools")
+        return super(BlogTools, self).create(vals)
 
 
 class BlogToolsItem(models.Model):
