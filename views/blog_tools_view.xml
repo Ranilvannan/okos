@@ -12,6 +12,9 @@
                         <field name="name"/>
                         <field name="website"/>
                     </group>
+                    <group>
+                        <field name="gallery_ids" widget="many2many_tags"/>
+                    </group>
                     <field name="content" placeholder="Content..."/>
                     <notebook>
                         <page string="Feature">

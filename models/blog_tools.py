@@ -9,6 +9,7 @@ class BlogTools(models.Model):
     name = fields.Char(string="Name")
     content = fields.Text(string="Content")
     feature_ids = fields.One2many(comodel_name="blog.tools.item", inverse_name="tool_id")
+    gallery_ids = fields.Many2many(comodel_name="blog.gallery")
     website = fields.Char(string="Website")
 
     @api.model

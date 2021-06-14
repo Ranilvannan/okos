@@ -19,6 +19,7 @@
                         <field name="is_completed"/>
                         <field name="is_exported"/>
                         <field name="date_of_publish"/>
+                        <field name="ref"/>
                     </group>
                     <notebook>
                         <page string="Content">

@@ -10,9 +10,10 @@
                     <group>
                         <field name="file_name"/>
                         <field name="file_path"/>
+                        <field name="description"/>
                         <field name="image"/>
                     </group>
-                    <button name="trigger_gallery" string="Save" type="object"/>
+                    <button name="trigger_gallery" class="btn btn-primary" string="Save" type="object"/>
                 </sheet>
             </form>
         </field>
@@ -25,6 +26,7 @@
             <tree name="Gallery">
                 <field name="file_name"/>
                 <field name="file_path"/>
+                <field name="description"/>
             </tree>
         </field>
     </record>

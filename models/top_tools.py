@@ -20,11 +20,13 @@ class TopTools(models.Model):
 
         rec = self.env["blog.blog"].search([("ref", "=", self.sequence)])
         if not rec:
-            self.env["blog.blog"].create({"name": self.name, "content": content})
+            self.env["blog.blog"].create({"name": self.name,
+                                          "content": content,
+                                          "ref": self.sequence})
 
         if rec:
             rec.name = self.name
-            rec.content = self.content
+            rec.content = content
 
         return True
 
