@@ -7,6 +7,7 @@ import base64
 class Gallery(models.Model):
     _name = "blog.gallery"
     _description = "Blog Galleries"
+    _rec_name = "file_name"
 
     file_name = fields.Char(string="Filename")
     file_path = fields.Char(string="Filepath")

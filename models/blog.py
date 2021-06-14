@@ -28,6 +28,25 @@ class Blog(models.Model):
         ('related_blog_uniq', 'unique (ref)', "Reference is not unique !.."),
     ]
 
+    def trigger_duplicate(self):
+        self.env["blog.blog"].create({
+            "date": self.date,
+            "name": self.name,
+            "url": self.url,
+            "preview": self.preview,
+            "content": self.content,
+            "gallery_id": self.gallery_id.id,
+            "author_id": self.author_id.id,
+            "category_id": self.category_id.id,
+            "variety_id": self.variety_id.id,
+            "comments_count": self.comments_count,
+            "views_count": self.views_count,
+            "is_completed": self.is_completed,
+        })
+
+    def trigger_export(self):
+        self.env["blog.export"].trigger_technical_blog_export()
+
     @api.model
     def create(self, vals):
         vals["sequence"] = self.env['ir.sequence'].next_by_code("blog.blog")

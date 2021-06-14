@@ -23,7 +23,7 @@ class Export(models.TransientModel):
 
         recs = self.env["blog.blog"].search([("variety_id.code", "=", variety),
                                              ("is_completed", "=", True),
-                                             ("is_exported", "=", False)])[:3]
+                                             ("is_exported", "=", False)])[:10]
 
         if recs:
             data = self.generate_json(recs)
@@ -68,7 +68,7 @@ class Export(models.TransientModel):
                 "image_file": rec.gallery_id.file_name,
                 "image_file_path": rec.gallery_id.file_path,
                 "items": [{"image_file": item.gallery_id.file_name,
-                           "image_file_path": item.gallery_id.file_path} for item in rec.items],
+                           "image_file_path": item.gallery_id.file_path} for item in rec.item_ids],
                 "preview": rec.preview,
                 "content": rec.content,
                 "author_name": rec.author_id.name,

@@ -21,6 +21,8 @@
                         <field name="date_of_publish"/>
                         <field name="ref"/>
                     </group>
+                    <button name="trigger_duplicate" string="Duplicate" type="object"/>
+                    <button name="trigger_export" string="Export" type="object"/>
                     <notebook>
                         <page string="Content">
                             <field name="content"/>
