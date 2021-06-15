@@ -1,5 +1,6 @@
 from odoo import models, fields
 from odoo.tools import config
+from datetime import datetime
 import os
 import base64
 
@@ -9,6 +10,7 @@ class Gallery(models.Model):
     _description = "Blog Galleries"
     _rec_name = "filename"
 
+    date = fields.Date(string="Date", default=datetime.now())
     filename = fields.Char(string="Filename")
     filepath = fields.Char(string="Filepath")
     image = fields.Binary(string="Image")
