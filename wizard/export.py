@@ -105,6 +105,8 @@ class Export(models.TransientModel):
                 "related_blogs": [{"image_filename": item.gallery_id.filename,
                                    "image_filepath": item.gallery_id.filepath,
                                    "image_description": item.gallery_id.description,
+                                   "category_name": rec.category_id.name,
+                                   "category_url": rec.category_id.url,
                                    "name": item.name,
                                    "url": item.url} for item in related_articles.related_ids]
             }
