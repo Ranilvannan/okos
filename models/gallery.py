@@ -15,9 +15,10 @@ class Gallery(models.Model):
     filepath = fields.Char(string="Filepath")
     image = fields.Binary(string="Image")
     description = fields.Char(string="Description")
+    is_exported = fields.Boolean(string="Is Exported")
 
     def trigger_gallery(self):
-        root_path = config["technical_blog_root"]
+        root_path = config["gallery_path"]
         filepath = os.path.join(root_path, self.filepath)
         image = os.path.join(filepath, self.filename)
         is_directory_available = os.path.isdir(filepath)

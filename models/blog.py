@@ -42,8 +42,17 @@ class Blog(models.Model):
             "is_completed": self.is_completed,
         })
 
-    def trigger_export(self):
-        self.env["blog.export"].trigger_technical_blog_export()
+    def trigger_blog_export(self):
+        self.env["blog.export"].trigger_blog_export()
+
+    def trigger_gallery_export(self):
+        self.env["blog.export"].trigger_gallery_export()
+
+    def reset_blog(self):
+        self.env["blog.export"].reset_blog()
+
+    def reset_gallery(self):
+        self.env["blog.export"].reset_gallery()
 
     @api.model
     def create(self, vals):

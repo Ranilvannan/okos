@@ -13,6 +13,7 @@
                         <field name="filepath"/>
                         <field name="description"/>
                         <field name="image"/>
+                        <field name="is_exported"/>
                     </group>
                     <button name="trigger_gallery" class="btn btn-primary" string="Save" type="object"/>
                 </sheet>
@@ -29,6 +30,7 @@
                 <field name="filename"/>
                 <field name="filepath"/>
                 <field name="description"/>
+                <field name="is_exported"/>
             </tree>
         </field>
     </record>

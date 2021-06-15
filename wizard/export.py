@@ -73,7 +73,7 @@ class Export(models.TransientModel):
 
             blog = {
                 "blog_id": rec.id,
-                "blog_code": config["export_blog_code"],
+                "blog_code": config["export_blog_filename"],
                 "date_us_format": rec.date.strftime("%Y-%m-%d"),
                 "date_read_format": rec.date.strftime("%d %b %Y"),
                 "date_lastmod": rec.date.strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -82,8 +82,10 @@ class Export(models.TransientModel):
                 "url": rec.url,
                 "image_filename": rec.gallery_id.filename,
                 "image_filepath": rec.gallery_id.filepath,
+                "image_description": rec.gallery_id.description,
                 "galleries": [{"image_filename": gallery.filename,
-                               "image_filepath": gallery.filepath} for gallery in rec.gallery_ids],
+                               "image_filepath": gallery.filepath,
+                               "image_description": gallery.description} for gallery in rec.gallery_ids],
                 "preview": rec.preview,
                 "content": rec.content,
                 "author_name": rec.author_id.name,
@@ -91,6 +93,7 @@ class Export(models.TransientModel):
                 "author_description": rec.author_id.about_me,
                 "author_image_filename": rec.author_id.gallery_id.filename,
                 "author_image_filepath": rec.author_id.gallery_id.filepath,
+                "author_image_description": rec.author_id.gallery_id.description,
                 "category_name": rec.category_id.name,
                 "category_url": rec.category_id.url,
                 "comments_count": 0,
@@ -101,6 +104,7 @@ class Export(models.TransientModel):
                 "next_blog_url": next_blog_url,
                 "related_blogs": [{"image_filename": item.gallery_id.filename,
                                    "image_filepath": item.gallery_id.filepath,
+                                   "image_description": item.description,
                                    "name": item.name,
                                    "url": item.url} for item in related_articles.related_ids]
             }
@@ -125,7 +129,7 @@ class Export(models.TransientModel):
 
     def generate_tmp_json_file(self, json_data, filename):
         prefix = datetime.now().strftime('%s')
-        suffix = "{filename}.json".format(filename=filename)
+        suffix = "_{filename}.json".format(filename=filename)
         tmp_file = tempfile.NamedTemporaryFile(prefix=prefix, suffix=suffix, delete=False, mode="w+")
         json.dump(json_data, tmp_file)
         tmp_file.flush()
