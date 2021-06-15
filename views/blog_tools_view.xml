@@ -15,7 +15,9 @@
                     <group>
                         <field name="gallery_ids" widget="many2many_tags"/>
                     </group>
-                    <field name="content" placeholder="Content..."/>
+                    <group string="Content">
+                        <field name="content" placeholder="Content..." nolabel="1"/>
+                    </group>
                     <notebook>
                         <page string="Feature">
                             <field name="feature_ids">

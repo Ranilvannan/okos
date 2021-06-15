@@ -7,7 +7,8 @@
         <field name="arch" type="xml">
             <form string="Gallery">
                 <sheet>
-                    <group>
+                    <group col="4">
+                        <field name="date"/>
                         <field name="filename"/>
                         <field name="filepath"/>
                         <field name="description"/>
@@ -24,6 +25,7 @@
         <field name="model">blog.gallery</field>
         <field name="arch" type="xml">
             <tree name="Gallery">
+                <field name="date"/>
                 <field name="filename"/>
                 <field name="filepath"/>
                 <field name="description"/>

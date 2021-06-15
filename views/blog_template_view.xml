@@ -9,7 +9,6 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="url"/>
                         <field name="template"/>
                     </group>
                 </sheet>
@@ -23,8 +22,6 @@
         <field name="arch" type="xml">
             <tree name="Blog Template">
                 <field name="name"/>
-                <field name="url"/>
-                <field name="template"/>
             </tree>
         </field>
     </record>

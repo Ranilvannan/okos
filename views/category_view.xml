@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form string="Category">
                 <sheet>
-                    <group>
+                    <group col="4">
                         <field name="name"/>
                         <field name="code"/>
                         <field name="url"/>
@@ -24,6 +24,7 @@
             <tree name="Category">
                 <field name="name"/>
                 <field name="code"/>
+                <field name="url"/>
             </tree>
         </field>
     </record>

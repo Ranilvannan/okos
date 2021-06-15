@@ -9,7 +9,7 @@
                 <sheet>
                     <group>
                         <field name="blog_id"/>
-                        <field name="related_ids"/>
+                        <field name="related_ids" widget="many2many_tags"/>
                     </group>
                 </sheet>
             </form>

@@ -14,22 +14,20 @@
                         <field name="author_id"/>
                         <field name="category_id"/>
                         <field name="gallery_id"/>
-                        <field name="preview"/>
+                        <field name="ref"/>
                         <field name="is_completed"/>
                         <field name="is_exported"/>
                         <field name="date_of_publish"/>
-                        <field name="ref"/>
                     </group>
                     <group>
-                        <field name="gallery_ids" placeholder="Galleries..."/>
+                        <field name="preview"/>
+                        <field name="gallery_ids" widget="many2many_tags" placeholder="Galleries..."/>
                     </group>
                     <button name="trigger_duplicate" string="Duplicate" type="object"/>
                     <button name="trigger_export" string="Export" type="object"/>
-                    <notebook>
-                        <page string="Content">
-                            <field name="content"/>
-                        </page>
-                    </notebook>
+                    <group string="Content">
+                        <field name="content" nolabel="1"/>
+                    </group>
                 </sheet>
             </form>
         </field>

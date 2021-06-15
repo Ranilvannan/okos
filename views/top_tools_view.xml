@@ -15,8 +15,10 @@
                     <group>
                         <field name="tools_ids" widget="many2many_tags" placeholder="Tools...."/>
                     </group>
-                    <field name="content" placeholder="Content..."/>
                     <button name="trigger_generate_blog" class="btn btn-primary" string="Generate Blog" type="object"/>
+                    <group string="Content">
+                        <field name="content" placeholder="Content..." nolabel="1"/>
+                    </group>
                 </sheet>
             </form>
         </field>
