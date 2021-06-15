@@ -24,7 +24,7 @@ class Export(models.TransientModel):
             rec.is_exported = False
 
     def trigger_blog_export(self):
-        blog_filename = config["export_blog"]
+        blog_filename = config["export_blog_filename"]
 
         # Articles Export
         recs = self.env["blog.blog"].search([("is_completed", "=", True), ("is_exported", "=", False)])[:10]
@@ -37,7 +37,7 @@ class Export(models.TransientModel):
             rec.is_exported = True
 
     def trigger_gallery_export(self):
-        gallery_filename = config["export_gallery"]
+        gallery_filename = config["export_gallery_filename"]
 
         # Gallery Export
         recs = self.env["blog.gallery"].search([("is_exported", "=", False)])[:500]
