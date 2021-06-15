@@ -8,8 +8,8 @@
             <form string="Gallery">
                 <sheet>
                     <group>
-                        <field name="file_name"/>
-                        <field name="file_path"/>
+                        <field name="filename"/>
+                        <field name="filepath"/>
                         <field name="description"/>
                         <field name="image"/>
                     </group>

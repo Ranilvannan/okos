@@ -1,4 +1,4 @@
-from odoo import models, fields, api, exceptions
+from odoo import models
 from odoo.tools import config
 import os
 import json
@@ -12,30 +12,44 @@ class Export(models.TransientModel):
     _description = "Blog Export"
 
     def reset_blog(self):
-        variety = config["technical_blog_export_variety"]
-        recs = self.env["blog.blog"].search([("variety_id.name", "=", variety)])
+        recs = self.env["blog.blog"].search([("id", ">", 0)])
 
         for rec in recs:
             rec.is_exported = False
 
-    def trigger_technical_blog_export(self):
-        variety = config["technical_blog_export_variety"]
+    def reset_gallery(self):
+        recs = self.env["blog.gallery"].search([("id", ">", 0)])
 
-        recs = self.env["blog.blog"].search([("variety_id.code", "=", variety),
-                                             ("is_completed", "=", True),
-                                             ("is_exported", "=", False)])[:10]
+        for rec in recs:
+            rec.is_exported = False
 
+    def trigger_blog_export(self):
+        blog_filename = config["export_blog"]
+
+        # Articles Export
+        recs = self.env["blog.blog"].search([("is_completed", "=", True), ("is_exported", "=", False)])[:10]
         if recs:
-            data = self.generate_json(recs)
-
-            # Articles Export
-            tmp_file = self.generate_tmp_json_file(data["articles"])
+            data = self.generate_variety_json(recs)
+            tmp_file = self.generate_tmp_json_file(data["articles"], blog_filename)
             # self.move_tmp_file(tmp_file)
 
         for rec in recs:
             rec.is_exported = True
 
-    def generate_json(self, recs):
+    def trigger_gallery_export(self):
+        gallery_filename = config["export_gallery"]
+
+        # Gallery Export
+        recs = self.env["blog.gallery"].search([("is_exported", "=", False)])[:500]
+        if recs:
+            data = self.generate_gallery_json(recs)
+            tmp_file = self.generate_tmp_json_file(data["galleries"], gallery_filename)
+            # self.move_tmp_file(tmp_file)
+
+        for rec in recs:
+            rec.is_exported = True
+
+    def generate_variety_json(self, recs):
         articles = []
 
         for rec in recs:
@@ -65,29 +79,27 @@ class Export(models.TransientModel):
                 "sequence": rec.sequence,
                 "name": rec.name,
                 "url": rec.url,
-                "image_file": rec.gallery_id.file_name,
-                "image_file_path": rec.gallery_id.file_path,
-                "items": [{"image_file": item.gallery_id.file_name,
-                           "image_file_path": item.gallery_id.file_path} for item in rec.item_ids],
+                "image_filename": rec.gallery_id.filename,
+                "image_filepath": rec.gallery_id.filepath,
+                "galleries": [{"image_filename": gallery.filename,
+                               "image_filepath": gallery.filepath} for gallery in rec.gallery_ids],
                 "preview": rec.preview,
                 "content": rec.content,
                 "author_name": rec.author_id.name,
                 "author_email": rec.author_id.email,
                 "author_description": rec.author_id.about_me,
-                "author_photo_image_file": rec.author_id.gallery_id.file_name,
-                "author_photo_image_file_path": rec.author_id.gallery_id.file_path,
+                "author_image_filename": rec.author_id.gallery_id.filename,
+                "author_image_filepath": rec.author_id.gallery_id.filepath,
                 "category_name": rec.category_id.name,
                 "category_url": rec.category_id.url,
-                "variety": rec.variety_id.name,
-                "blog_code": rec.variety_id.code,
                 "comments_count": 0,
                 "views_count": 0,
                 "previous_blog_name": previous_blog_name,
                 "previous_blog_url": previous_blog_url,
                 "next_blog_name": next_blog_name,
                 "next_blog_url": next_blog_url,
-                "related_blogs": [{"image_file": item.gallery_id.file_name,
-                                   "image_file_path": item.gallery_id.file_path,
+                "related_blogs": [{"image_filename": item.gallery_id.filename,
+                                   "image_filepath": item.gallery_id.filepath,
                                    "name": item.name,
                                    "url": item.url} for item in related_articles.related_ids]
             }
@@ -96,19 +108,34 @@ class Export(models.TransientModel):
 
         return {"articles": articles}
 
-    def generate_tmp_json_file(self, json_data):
+    def generate_gallery_json(self, recs):
+        galleries = []
+
+        for rec in recs:
+            image = {
+                "gallery_id": rec.id,
+                "filename": rec.filename,
+                "filepath": rec.filepath,
+                "description": rec.description
+            }
+            galleries.append(image)
+
+        return {"galleries": galleries}
+
+    def generate_tmp_json_file(self, json_data, filename):
         prefix = datetime.now().strftime('%s')
-        tmp_file = tempfile.NamedTemporaryFile(prefix=prefix, suffix=".json", delete=False, mode="w+")
+        suffix = "{filename}.json".format(filename=filename)
+        tmp_file = tempfile.NamedTemporaryFile(prefix=prefix, suffix=suffix, delete=False, mode="w+")
         json.dump(json_data, tmp_file)
         tmp_file.flush()
 
         return tmp_file
 
     def move_tmp_file(self, tmp_file):
-        host = config["technical_blog_export_host"]
-        username = config["technical_blog_export_username"]
-        key_filename = config["technical_blog_export_public_key_filename"]
-        path = config["technical_blog_path"]
+        host = config["export_host"]
+        username = config["export_username"]
+        key_filename = config["export_public_key"]
+        path = config["export_path"]
 
         ssh_client = SSHClient()
         ssh_client.set_missing_host_key_policy(AutoAddPolicy())

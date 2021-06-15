@@ -13,7 +13,6 @@
                         <field name="url"/>
                         <field name="author_id"/>
                         <field name="category_id"/>
-                        <field name="variety_id"/>
                         <field name="gallery_id"/>
                         <field name="preview"/>
                         <field name="is_completed"/>
@@ -21,18 +20,14 @@
                         <field name="date_of_publish"/>
                         <field name="ref"/>
                     </group>
+                    <group>
+                        <field name="gallery_ids" placeholder="Galleries..."/>
+                    </group>
                     <button name="trigger_duplicate" string="Duplicate" type="object"/>
                     <button name="trigger_export" string="Export" type="object"/>
                     <notebook>
                         <page string="Content">
                             <field name="content"/>
-                        </page>
-                        <page string="Gallery Items">
-                            <field name="item_ids">
-                                <tree editable="bottom">
-                                    <field name="gallery_id"/>
-                                </tree>
-                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -50,7 +45,6 @@
                 <field name="url"/>
                 <field name="author_id"/>
                 <field name="category_id"/>
-                <field name="variety_id"/>
                 <field name="is_completed"/>
                 <field name="is_exported"/>
                 <field name="date_of_publish"/>

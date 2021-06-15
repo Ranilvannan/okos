@@ -1,7 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 blog_author_admin,blog.author.admin,model_blog_author,okos_admin,1,1,1,1
 blog_category_admin,blog.category.admin,model_blog_category,okos_admin,1,1,1,1
-blog_variety_admin,blog.variety.admin,model_blog_variety,okos_admin,1,1,1,1
 blog_blog_admin,blog.blog.admin,model_blog_blog,okos_admin,1,1,1,1
 blog_template_admin,blog.template.admin,model_blog_template,okos_admin,1,1,1,1
 top_tools_admin,top.tools.admin,model_top_tools,okos_admin,1,1,1,1
@@ -10,4 +9,3 @@ blog_related_admin,blog.related.admin,model_blog_related,okos_admin,1,1,1,1
 blog_tools_item_admin,blog.tools.item.admin,model_blog_tools_item,okos_admin,1,1,1,1
 blog_export_admin,blog.export.admin,model_blog_export,okos_admin,1,1,1,1
 blog_gallery_admin,blog.gallery.admin,model_blog_gallery,okos_admin,1,1,1,1
-blog_items_admin,blog.items.admin,model_blog_items,okos_admin,1,1,1,1
