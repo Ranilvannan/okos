@@ -24,8 +24,8 @@
         <field name="model">blog.gallery</field>
         <field name="arch" type="xml">
             <tree name="Gallery">
-                <field name="file_name"/>
-                <field name="file_path"/>
+                <field name="filename"/>
+                <field name="filepath"/>
                 <field name="description"/>
             </tree>
         </field>
